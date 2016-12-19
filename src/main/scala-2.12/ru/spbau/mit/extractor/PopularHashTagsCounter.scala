@@ -1,4 +1,4 @@
-package extractor
+package ru.spbau.mit.extractor
 
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.spark.streaming.Duration

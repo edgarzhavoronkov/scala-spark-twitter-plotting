@@ -1,6 +1,12 @@
-lazy val sparkVersion = "1.4.0"
+lazy val sparkVersion = "2.0.2"
+
+enablePlugins(ScalaJSPlugin)
 
 name := "scala-spark-twitter-plotting"
+
+version := "1.0"
+
+scalaVersion := "2.11.8"
 
 lazy val commonSettings = Seq(
   version := "0.1.0",
@@ -26,10 +32,10 @@ lazy val root = (project in file(".")).
   settings(
     name := "scala-spark-twitter-plotting",
     libraryDependencies ++= Seq(
-      "org.apache.spark" % "spark-core_2.10" % "2.0.2",
-      "org.apache.spark" % "spark-streaming-twitter_2.10" % "1.6.3" % "provided",
-      "org.apache.spark" % "spark-streaming_2.10" % "2.0.2" % "provided",
-      "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
+      "org.apache.spark" % "spark-core_2.11" % "2.0.2",
+      "org.apache.spark" % "spark-streaming_2.11" % "2.0.2",
+      "org.apache.bahir" % "spark-streaming-twitter_2.11" % "2.0.1",
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
+      "org.scala-js" %%% "scalajs-dom" % "0.9.1"
     )
   )
-

@@ -1,4 +1,4 @@
-package extractor
+package ru.spbau.mit.extractor
 
 import java.nio.file.{Files, Paths}
 import java.util.Properties
