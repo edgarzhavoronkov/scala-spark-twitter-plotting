@@ -1,17 +1,12 @@
-lazy val sparkVersion = "2.0.2"
-
 enablePlugins(ScalaJSPlugin)
 
-name := "scala-spark-twitter-plotting"
-
-version := "1.0"
-
-scalaVersion := "2.11.8"
+lazy val sparkVersion = "2.0.2"
 
 lazy val commonSettings = Seq(
+  name := "scala-spark-twitter-plotting",
   version := "0.1.0",
-  organization := "com.apbau",
-  scalaVersion := "2.12.1"
+  organization := "ru.spbau.mit",
+  scalaVersion := "2.11.8"
 )
 
 /** Assembly Plugin Configuration **/
@@ -21,7 +16,7 @@ test in assembly := {}
 
 // Conflicting path resolution
 assemblyMergeStrategy in assembly := {
-  case PathList("org", "apache", "spark", "unused", xs @ _*)         => MergeStrategy.first
+  case PathList("org", "apache", "spark", "unused", xs @ _*) => MergeStrategy.first
   case x =>
     val oldStrategy = (assemblyMergeStrategy in assembly).value
     oldStrategy(x)
