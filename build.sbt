@@ -9,11 +9,12 @@ lazy val frontendSettings = Seq(
   persistLauncher := true,
   skip in packageJSDependencies := false,
   jsDependencies ++= Def.setting(Seq[org.scalajs.sbtplugin.JSModuleID](
-    "org.webjars" % "jquery" % "2.1.3" / "2.1.3/jquery.js"
+    "org.webjars" % "jquery" % "2.1.3" / "2.1.3/jquery.js",
+    "org.webjars.bower" % "paths-js" % "0.4.4" / "paths.js"
   )).value,
   libraryDependencies ++= Seq(
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
-    "eu.unicredit" %%% "paths-scala-js" % "0.3.2"
+    "eu.unicredit" %%% "paths-scala-js" % "0.4.4"
   )
 )
 
