@@ -8,12 +8,12 @@ lazy val frontendSettings = Seq(
   ivyConfigurations += config("js"),
   persistLauncher := true,
   skip in packageJSDependencies := false,
-  jsDependencies ++= Def.setting(Seq[org.scalajs.sbtplugin.JSModuleID](
+  jsDependencies ++= Seq(
     "org.webjars" % "jquery" % "2.1.3" / "2.1.3/jquery.js",
-    "org.webjars.bower" % "paths-js" % "0.4.4" / "paths.js",
-    "org.webjars" % "bootstrap" % "3.3.7" / "bootstrap.js" dependsOn "2.1.3/jquery.js"
-  )).value,
-  jsDependencies += RuntimeDOM,
+    "org.webjars" % "react" % "0.12.1" / "react-with-addons.js" commonJSName "React",
+    "org.webjars" % "bootstrap" % "3.3.7" / "bootstrap.js" dependsOn "2.1.3/jquery.js",
+    RuntimeDOM
+  ),
   libraryDependencies ++= Seq(
     "eu.unicredit" %%% "paths-scala-js" % "0.4.4",
     "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2"
