@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Example of Scala JS</title>
+        <title>Twitter plotting web app(actually no)</title>
     </head>
     <body>
     <input id="item1-value" type="text"/>
@@ -11,10 +11,11 @@
     <input id="from-timestamp" type="datetime-local"/>
     <input id="to-timestamp" type="datetime-local"/>
     <br/>
-    <button id="click-me-button" type="button" onclick="ru.spbau.mit.Example().addClickedMessage()">Fire!</button>
-    <script type="text/javascript" src="./target/scala-2.12/scala-spark-twitter-plotting-fastopt.js"></script>
-        <script type="text/javascript">
-            ru.spbau.mit.Example().main();
-        </script>
+    <button id="click-me-button" type="button">Click</button>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./target/scala-2.11/scala-spark-twitter-plotting-fastopt.js"></script>
+    <script type="text/javascript" src="./target/scala-2.11/scala-spark-twitter-plotting-launcher.js"></script>
+
     </body>
 </html>
