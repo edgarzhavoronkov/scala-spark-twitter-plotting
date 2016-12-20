@@ -33,7 +33,7 @@ object Extractor {
     // Prints to the output directory
     def saveFrequencies(counts:DStream[(String, Int)]) =
       counts.foreachRDD(rdd => {
-        rdd.map(a => a._1 + "," + a._2).saveAsTextFile(outputDir + "\\" + Platform.currentTime)
+        rdd.map(a => a._1.toLowerCase() + "," + a._2).saveAsTextFile(outputDir + "\\" + Platform.currentTime)
       })
 
     saveFrequencies(topCounts)
