@@ -10,11 +10,13 @@ lazy val frontendSettings = Seq(
   skip in packageJSDependencies := false,
   jsDependencies ++= Def.setting(Seq[org.scalajs.sbtplugin.JSModuleID](
     "org.webjars" % "jquery" % "2.1.3" / "2.1.3/jquery.js",
-    "org.webjars.bower" % "paths-js" % "0.4.4" / "paths.js"
+    "org.webjars.bower" % "paths-js" % "0.4.4" / "paths.js",
+    "org.webjars" % "bootstrap" % "3.3.7" / "bootstrap.js" dependsOn "2.1.3/jquery.js"
   )).value,
+  jsDependencies += RuntimeDOM,
   libraryDependencies ++= Seq(
-    "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
-    "eu.unicredit" %%% "paths-scala-js" % "0.4.4"
+    "eu.unicredit" %%% "paths-scala-js" % "0.4.4",
+    "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2"
   )
 )
 
@@ -36,7 +38,6 @@ lazy val backendSettings = Seq(
     "org.apache.bahir" %% "spark-streaming-twitter" % "2.0.1",
     "com.github.nscala-time" %% "nscala-time" % "2.14.0"
   )
-
 )
 
 lazy val root = (project in file("."))

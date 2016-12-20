@@ -16,3 +16,12 @@ On Unix systems, in util.scale remove winutils declaration
 
 #Run with:
 C:\spark\spark-2.0.1-bin-hadoop2.7\bin\spark-submit --class ru.spbau.mit.extractor.Extractor target\scala-2.11\Scala_project-assembly-1.0.jar
+
+
+## For frontend:
+
+Install jsdom
+
+```
+npm.install jsdom
+```
