@@ -15,7 +15,7 @@ final class Comparer(implicit ctx: Ctx.Owner) extends BootstrapComponent {
     val secondText = Var("First word")
     val firstWordInput = FormInput.text(placeholder := "First word", firstText.reactiveInput).render
     val secondWordInput = FormInput.text(placeholder := "Second word", secondText.reactiveInput).render
-    val successButton = Button(ButtonStyle.success)("Win 10000000$", onclick := Bootstrap.jsClick(_ => println(firstText.now + " " + secondText.now))).render
+    val successButton = Button(ButtonStyle.success)("Plot", onclick := Bootstrap.jsClick(_ => println(firstText.now + " " + secondText.now))).render
     // Render table
     val res = GridSystem
     Form(

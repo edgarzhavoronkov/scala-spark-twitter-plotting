@@ -16,6 +16,7 @@ lazy val frontendSettings = Seq(
   ),
   libraryDependencies ++= Seq(
     "eu.unicredit" %%% "paths-scala-js" % "0.4.4",
+    "com.github.japgolly.scalajs-react" %%% "core" % "0.8.1",
     "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2"
   )
 )
