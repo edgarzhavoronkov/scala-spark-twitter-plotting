@@ -1,5 +1,6 @@
 package ru.spbau.mit.extractor
 
+
 import java.nio.file.{Files, Paths}
 import java.util.Properties
 
@@ -13,7 +14,10 @@ import twitter4j.conf.ConfigurationBuilder
 
 import scala.io.Source
 
-class Util(val filename: String = "app.properties", val confDir: String = "TWEETALYZER_CONF_DIR") {
+/**
+  * Created by Mark on 20.12.2016.
+  */
+class Util(val filename: String = "app.properties", val confDir: String = "SPARK_CONF_DIR") {
 
   /**
     * Application config:
@@ -29,7 +33,7 @@ class Util(val filename: String = "app.properties", val confDir: String = "TWEET
     case path if path != null && Files.exists(Paths.get(path)) =>
       conf.load {Source.fromFile(confMap(path)).bufferedReader()}
     case _ =>
-      conf.load {Source.fromFile(confMap("C:\\Users\\gellm\\Documents\\AU\\Scala\\scala-spark-twitter-plotting\\src\\main\\resources\\")).bufferedReader()}
+      conf.load {Source.fromFile(confMap("./")).bufferedReader()}
   }
 
   def streamContext(appName: String): StreamingContext = {
@@ -65,6 +69,6 @@ class Util(val filename: String = "app.properties", val confDir: String = "TWEET
 }
 
 object Util {
-  System.setProperty("hadoop.home.dir", "c:\\winutils");
+  System.setProperty("hadoop.home.dir", "c:\\winutils")
   val instance = new Util()
 }

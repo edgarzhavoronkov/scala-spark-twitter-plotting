@@ -1,36 +1,25 @@
 enablePlugins(ScalaJSPlugin)
 
-lazy val sparkVersion = "2.0.2"
+name := "Scala_project"
 
-lazy val commonSettings = Seq(
-  name := "scala-spark-twitter-plotting",
-  version := "0.1.0",
-  organization := "ru.spbau.mit",
-  scalaVersion := "2.11.8"
+version := "1.0"
+
+scalaVersion := "2.11.8"
+
+libraryDependencies ++= Seq(
+  "org.apache.spark" %% "spark-core" % "2.0.1" % "provided",
+  "org.apache.spark" %% "spark-streaming" % "2.0.1" % "provided",
+  "org.apache.bahir" %% "spark-streaming-twitter" % "2.0.1",
+  "com.github.nscala-time" %% "nscala-time" % "2.14.0"
 )
 
-/** Assembly Plugin Configuration **/
-
-// Skip tests when packaging
-test in assembly := {}
-
-// Conflicting path resolution
 assemblyMergeStrategy in assembly := {
-  case PathList("org", "apache", "spark", "unused", xs @ _*) => MergeStrategy.first
-  case x =>
-    val oldStrategy = (assemblyMergeStrategy in assembly).value
-    oldStrategy(x)
+  case PathList("javax", "activation", xs @ _*)                   => MergeStrategy.first
+  case PathList("com", "esotericsoftware", xs @ _*)               => MergeStrategy.first
+  case PathList("org", "apache", "hadoop", xs @ _*)               => MergeStrategy.first
+  case PathList("org", "apache", "commons", xs @ _*)              => MergeStrategy.first
+  case PathList("org", "slf4j", xs @ _*)                          => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith "plugin.properties"  => MergeStrategy.first
+  case PathList("META-INF", xs @ _*)                              => MergeStrategy.discard
+  case x                                                          => MergeStrategy.last
 }
-
-lazy val root = (project in file(".")).
-  settings(commonSettings: _*).
-  settings(
-    name := "scala-spark-twitter-plotting",
-    libraryDependencies ++= Seq(
-      "org.apache.spark" % "spark-core_2.11" % "2.0.2",
-      "org.apache.spark" % "spark-streaming_2.11" % "2.0.2",
-      "org.apache.bahir" % "spark-streaming-twitter_2.11" % "2.0.1",
-      "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
-      "org.scala-js" %%% "scalajs-dom" % "0.9.1"
-    )
-  )
