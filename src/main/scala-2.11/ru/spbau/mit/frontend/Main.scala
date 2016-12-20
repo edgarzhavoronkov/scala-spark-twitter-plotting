@@ -16,7 +16,7 @@ import scalatags.JsDom.all._
 /**
   * Created by edgar on 19.12.16.
   */
-object Example extends JSApp {
+object Main extends JSApp {
   private implicit val context = implicitly[Ctx.Owner] // Stops working if moved to main(), macro magic
 
   @JSExport
