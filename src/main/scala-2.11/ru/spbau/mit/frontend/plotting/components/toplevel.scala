@@ -2,106 +2,11 @@ package ru.spbau.mit.frontend.plotting.components
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import ru.spbau.mit.frontend.plotting.components.bar._
-import ru.spbau.mit.frontend.plotting.components.graph._
 import ru.spbau.mit.frontend.plotting.components.line._
-import ru.spbau.mit.frontend.plotting.components.logo._
 import ru.spbau.mit.frontend.plotting.components.panel._
-import ru.spbau.mit.frontend.plotting.components.piechart._
-import ru.spbau.mit.frontend.plotting.components.radar._
-import ru.spbau.mit.frontend.plotting.components.sankey._
-import ru.spbau.mit.frontend.plotting.components.smoothline._
-import ru.spbau.mit.frontend.plotting.components.stack._
-import ru.spbau.mit.frontend.plotting.components.tree._
-import ru.spbau.mit.frontend.plotting.components.voronoi._
-import ru.spbau.mit.frontend.plotting.components.waterfall._
-
-import scala.scalajs.js
 
 
 object toplevel {
-  val countries = List(
-    Country("Italy", 59859996),
-    Country("Mexico", 118395054),
-    Country("France", 65806000),
-    Country("Argentina", 40117096),
-    Country("Japan", 127290000)
-  )
-  val pokemons = List(
-    Pokemon("Bulbasaur", 45, 49, 49, 65, 65, 45),
-    Pokemon("Ivysaur", 60, 62, 63, 80, 80, 60),
-    Pokemon("Venusaur", 80, 82, 83, 100, 100, 80),
-    Pokemon("Kakuna", 45, 25, 50, 25, 25, 35),
-    Pokemon("Chameleon", 58, 64, 58, 80, 65, 80),
-    Pokemon("Squirtle", 40, 48, 65, 50, 64, 43),
-    Pokemon("Blastoise", 79, 83, 100, 85, 105, 78),
-    Pokemon("Butterfree", 60, 45, 50, 90, 80, 70)
-  )
-  val tree = Duck("Grandma", List(
-    Duck("Eider", List(
-      Duck("Fethry"), Duck("Abner")
-    )),
-    Duck("Daphne", List(
-      Duck("Gladstone")
-    )),
-    Duck("Quackmore", List(
-      Duck("Donald"),
-      Duck("Della", List(
-        Duck("Huey"), Duck("Dewey"), Duck("Louie")
-      ))
-    ))
-  ))
-  val stats = Stats(
-    values = List(
-      List(1, 2.0, 3, 4),
-      List(2, 3.0, 1, 4),
-      List(2, 2.5, 3, 3)
-    ),
-    labels = List("2009", "2010", "2011", "2012")
-  )
-  def randomGraph(n: Int, density: Double) = {
-    val characters = (1 to n) map { x => Character(x.toString) }
-    val links = characters.combinations(2) filter { _ =>
-      js.Math.random() < density
-    } map { case Vector(Character(a), Character(b)) =>
-      Link(a, b, 3 + 5 * js.Math.random())
-    }
-
-    Family(characters = characters.toList, links = links.toList)
-  }
-  val flow = Flow(
-    sectors = List(
-      List(
-        Sector("Energy"),
-        Sector("Agriculture"),
-        Sector("Minerals")
-      ),
-      List(
-        Sector("Transportation"),
-        Sector("Harvest"),
-        Sector("Fuel")
-      ),
-      List(
-        Sector("Road"),
-        Sector("Chemicals")
-      )
-    ),
-    links = List(
-      SLink(start = "Energy", end = "Harvest", weight = 10),
-      SLink(start = "Energy", end = "Fuel", weight = 30),
-      SLink(start = "Agriculture", end = "Road", weight = 10),
-      SLink(start = "Agriculture", end = "Transportation", weight = 10),
-      SLink(start = "Agriculture", end = "Harvest", weight = 10),
-      SLink(start = "Minerals", end = "Fuel", weight = 30),
-      SLink(start = "Transportation", end = "Chemicals", weight =  20),
-      SLink(start = "Harvest", end = "Chemicals", weight =  10),
-      SLink(start = "Fuel", end = "Road", weight =  30),
-      SLink(start = "Minerals", end = "Chemicals", weight =  25)
-    )
-  )
-  val voronoiPoints = (1 to 30) map { _ =>
-    (js.Math.random(), js.Math.random())
-  }
   val tickers = List(
     List(
       Event("Jan 2000", 39.81),
@@ -322,178 +227,12 @@ object toplevel {
       Event("Oct 2008", 107.59),
       Event("Nov 2008", 92.67),
       Event("Dec 2008", 85.35)
-    ),
-    List(
-      Event("Jan 2000", 64.56),
-      Event("Feb 2000", 68.87),
-      Event("Mar 2000", 67.0),
-      Event("Apr 2000", 55.19),
-      Event("May 2000", 48.31),
-      Event("Jun 2000", 36.31),
-      Event("Jul 2000", 30.12),
-      Event("Aug 2000", 41.5),
-      Event("Sep 2000", 38.44),
-      Event("Oct 2000", 36.62),
-      Event("Nov 2000", 24.69),
-      Event("Dec 2000", 15.56),
-      Event("Jan 2001", 17.31),
-      Event("Feb 2001", 10.19),
-      Event("Mar 2001", 10.23),
-      Event("Apr 2001", 15.78),
-      Event("May 2001", 16.69),
-      Event("Jun 2001", 14.15),
-      Event("Jul 2001", 12.49),
-      Event("Aug 2001", 8.94),
-      Event("Sep 2001", 5.97),
-      Event("Oct 2001", 6.98),
-      Event("Nov 2001", 11.32),
-      Event("Dec 2001", 10.82),
-      Event("Jan 2002", 14.19),
-      Event("Feb 2002", 14.1),
-      Event("Mar 2002", 14.3),
-      Event("Apr 2002", 16.69),
-      Event("May 2002", 18.23),
-      Event("Jun 2002", 16.25),
-      Event("Jul 2002", 14.45),
-      Event("Aug 2002", 14.94),
-      Event("Sep 2002", 15.93),
-      Event("Oct 2002", 19.36),
-      Event("Nov 2002", 23.35),
-      Event("Dec 2002", 18.89),
-      Event("Jan 2003", 21.85),
-      Event("Feb 2003", 22.01),
-      Event("Mar 2003", 26.03),
-      Event("Apr 2003", 28.69),
-      Event("May 2003", 35.89),
-      Event("Jun 2003", 36.32),
-      Event("Jul 2003", 41.64),
-      Event("Aug 2003", 46.32),
-      Event("Sep 2003", 48.43),
-      Event("Oct 2003", 54.43),
-      Event("Nov 2003", 53.97),
-      Event("Dec 2003", 52.62),
-      Event("Jan 2004", 50.4),
-      Event("Feb 2004", 43.01),
-      Event("Mar 2004", 43.28),
-      Event("Apr 2004", 43.6),
-      Event("May 2004", 48.5),
-      Event("Jun 2004", 54.4),
-      Event("Jul 2004", 38.92),
-      Event("Aug 2004", 38.14),
-      Event("Sep 2004", 40.86),
-      Event("Oct 2004", 34.13),
-      Event("Nov 2004", 39.68),
-      Event("Dec 2004", 44.29),
-      Event("Jan 2005", 43.22),
-      Event("Feb 2005", 35.18),
-      Event("Mar 2005", 34.27),
-      Event("Apr 2005", 32.36),
-      Event("May 2005", 35.51),
-      Event("Jun 2005", 33.09),
-      Event("Jul 2005", 45.15),
-      Event("Aug 2005", 42.7),
-      Event("Sep 2005", 45.3),
-      Event("Oct 2005", 39.86),
-      Event("Nov 2005", 48.46),
-      Event("Dec 2005", 47.15),
-      Event("Jan 2006", 44.82),
-      Event("Feb 2006", 37.44),
-      Event("Mar 2006", 36.53),
-      Event("Apr 2006", 35.21),
-      Event("May 2006", 34.61),
-      Event("Jun 2006", 38.68),
-      Event("Jul 2006", 26.89),
-      Event("Aug 2006", 30.83),
-      Event("Sep 2006", 32.12),
-      Event("Oct 2006", 38.09),
-      Event("Nov 2006", 40.34),
-      Event("Dec 2006", 39.46),
-      Event("Jan 2007", 37.67),
-      Event("Feb 2007", 39.14),
-      Event("Mar 2007", 39.79),
-      Event("Apr 2007", 61.33),
-      Event("May 2007", 69.14),
-      Event("Jun 2007", 68.41),
-      Event("Jul 2007", 78.54),
-      Event("Aug 2007", 79.91),
-      Event("Sep 2007", 93.15),
-      Event("Oct 2007", 89.15),
-      Event("Nov 2007", 90.56),
-      Event("Dec 2007", 92.64),
-      Event("Jan 2008", 77.7),
-      Event("Feb 2008", 64.47),
-      Event("Mar 2008", 71.3),
-      Event("Apr 2008", 78.63),
-      Event("May 2008", 81.62),
-      Event("Jun 2008", 73.33),
-      Event("Jul 2008", 76.34),
-      Event("Aug 2008", 80.81),
-      Event("Sep 2008", 72.76),
-      Event("Oct 2008", 57.24),
-      Event("Nov 2008", 42.7),
-      Event("Dec 2008", 51.28)
     )
-  )
-  val balance = List(
-    Total("Gross income", 30),
-    Expense("Transport", 6),
-    Expense("Distribution", 3),
-    RunningTotal("Detail income"),
-    Expense("Taxes", 8),
-    RunningTotal("Net income")
   )
 
   val TopLevel = ReactComponentB[Unit]("Top level component")
     .render(_ =>
       div(className := "container",
-        div(className := "row", Logo(())),
-        div(className := "row",
-          div(className := "col-md-12",
-            p(className := "alert alert-success",
-              "For simplicity, many animations have been stripped out from the Scala.js demo. See ",
-              a(href := "http://andreaferretti.github.io/paths-js-demo/", "this demo"),
-              " or ",
-              a(href := "http://andreaferretti.github.io/paths-js-react-demo/", "this demo"),
-              " for an overview of the possibilities."
-            )
-          )
-        ),
-        div(className := "row",
-          Panel(PanelContent(
-            id = Some("pie"),
-            title = "Pie Chart",
-            text = "Here is a pie chart example"
-          ), PieChart(countries)),
-          Panel(PanelContent(
-            id = Some("radar"),
-            title = "Radar Chart",
-            text = "Here is a radar chart showing Pokémon stats. Try changing Pokémon."
-          ), RadarChart(pokemons))
-        ),
-        div(className := "row",
-          Panel(PanelContent(
-            id = Some("tree"),
-            title = "Tree Chart",
-            text = "Here is part of the duck family tree."
-          ), TreeChart(tree)),
-          Panel(PanelContent(
-            id = Some("bar"),
-            title = "Bar Chart",
-            text = "Here is a bar chart example."
-          ), BarChart(stats))
-        ),
-        div(className := "row",
-          Panel(PanelContent(
-            id = Some("graph"),
-            title = "Graph Chart",
-            text = "A preliminary example of force-directed graph."
-          ), GraphChart(randomGraph(30, 0.15))),
-          Panel(PanelContent(
-            id = Some("sankey"),
-            title = "Sankey Diagram",
-            text = "Displays flow among entities."
-          ), SankeyDiagram(flow))
-        ),
         div(className := "row",
           Panel(PanelContent(
             id = Some("stock"),
@@ -501,29 +240,10 @@ object toplevel {
             text = "Here is a line chart example."
           ), LineChart(tickers)),
           Panel(PanelContent(
-            id = Some("smoothline"),
-            title = "Smooth Line Chart",
-            text = "And here is the same example drawn smoothly."
-          ), SmoothLineChart(tickers))
-        ),
-        div(className := "row",
-          Panel(PanelContent(
-            id = Some("waterfall"),
-            title = "Waterfall Chart",
-            text = "A breakdown of incomes and costs."
-          ), WaterfallChart(balance)),
-          Panel(PanelContent(
-            id = Some("voronoi"),
-            title = "Voronoi Diagram",
-            text = "A convex tiling of the plane."
-          ), VoronoiChart(voronoiPoints))
-        ),
-        div(className := "row",
-          Panel(PanelContent(
-            id = Some("stack"),
-            title = "Stack Chart",
-            text = "Here is a stacked bar chart example."
-          ), StackChart(stats))
+            id = Some("stock"),
+            title = "Stock Chart",
+            text = "Here is a line chart example."
+          ), LineChart(tickers))
         )
       )
     )
